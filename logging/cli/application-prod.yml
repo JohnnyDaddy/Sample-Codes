@@ -1,0 +1,12 @@
+spring:
+    datasource:
+        initialization-mode: never    
+        url: jdbc:sqlite:ess.db
+ess:
+    generatePath: C:\ESS\generatedFiles
+    apiServerUrl: http://localhost
+
+logging:
+    level:
+        root: INFO
+        com.zaxxer.hikari: DEBUG

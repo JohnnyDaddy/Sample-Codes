@@ -1,0 +1,28 @@
+debug: true
+
+server:
+    port: 9990
+
+spring:
+    datasource:
+        initialization-mode: always
+    esl.datasource:
+        url: jdbc:sqlserver://192.168.1.8;databaseName=ESL #esl server
+        # url: jdbc:sqlserver://192.168.1.25;databaseName=ESL #kb-laptop
+        
+
+logging:
+    level:
+        root: INFO
+        com.zaxxer.hikari: DEBUG
+        # org.springframework: WARN
+        org.springframework.jdbc: DEBUG
+        org.sqlite: DEBUG
+        io.dtonic.ess: DEBUG
+        org.mybatis: DEBUG
+    pattern.console: '%clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}:%line){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}'
+
+ess:
+    apiServerUrl: http://localhost:80
+    # apiServerUrl: http://192.168.1.25:80    #kb-laptop
+    # eslDatabaseUrl: jdbc:sqlserver://192.168.1.25;databaseName=ESL

@@ -1,0 +1,47 @@
+#!/usr/bin/env python2
+
+import argparse
+import sys
+import urllib
+
+
+logType = 'DEBUG'
+pkg = ''
+conf = 'application.yml'
+
+
+if __name__ == "__main__":
+    args = sys.argv[1:]
+    for index in range(0, len(args)):
+        if(args[index] == '--log-type'):
+            logType = args[index+1]
+        if(args[index] == '--package'):
+            pkg = args[index+1]
+        if(args[index] == '--f'):
+            conf = args[index+1]
+
+
+
+def getPortValue():
+    rawFile = open(conf).read()
+    paramList = rawFile.split('\n')
+    tempList =map(lambda x: x.strip(), paramList)
+    serverIndex = map(lambda x: x.startswith("server"), tempList).index(True)
+    portIndex = map(lambda x: x.startswith("port"), tempList)[serverIndex::].index(True)
+    result = tempList[portIndex].split(': ')[1]
+    return result
+
+
+portNumber = getPortValue()
+protocol = getPortValue()
+url =  "http://localhost:" + portNumber + "/changeLogLevel"
+
+
+print(url)
+
+
+
+
+
+params = urllib.urlencode({"level": logType, "pkg": pkg})
+f = urllib.urlopen(url, params)

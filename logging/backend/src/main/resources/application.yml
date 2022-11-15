@@ -1,0 +1,10 @@
+server:
+  port: 8081
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    filter: true
+    path: /doc
+    operationsSorter: method
+  show-login-endpoint: true

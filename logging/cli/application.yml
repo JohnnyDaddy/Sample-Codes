@@ -1,0 +1,47 @@
+server:
+    port: 9091
+
+spring:
+    port: 0000
+    application:
+        name: ess
+    datasource:
+        initialization-mode: always        
+        hikari:
+            connectionTimeout: 20000
+            maximumPoolSize: 5
+        driverClassName: org.sqlite.JDBC
+        # url: jdbc:sqlite::resource:ess.db
+        url: jdbc:sqlite:ess.db
+        continue-on-error: true          
+        sqlScriptEncoding: UTF-8
+    liquibase:
+        enabled: false
+        change-log: classpath:liquibase-changeLog.yml
+    servlet:
+        multipart:
+            max-file-size: 100MB
+            max-request-size: 100MB
+
+mybatis:
+    type-aliases-package: 
+        io.dtonic.ess.domain
+    configuration.map-underscore-to-camel-case: true
+
+security:
+    jwt:
+        token:
+            secret-key: SecretKey
+            expire-length: 3600000  
+
+ess:
+    generatePath: C:\ESS\generatedFiles
+    apiServerUrl: http://localhost:9001
+    commentEnable: false
+    sslCheck: false
+    licenseFolderPath: C:\Users\Dtonic-Duke\Downloads\licenses
+    useLDJsp: false
+
+build:
+    version: '@project.version@'
+
